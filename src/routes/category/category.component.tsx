@@ -7,7 +7,7 @@ import Spinner from '../../components/spinner/spinner.component';
 
 import { selectCategoriesIsLoading, selectCategoriesMap } from '../../store/categories/category.selector';
 
-import { CategoryContainer, Title } from './category.styles';
+import { CategoryContainer, CategoryProductContainer, Title } from './category.styles';
 
 type CategoryRouteParams = {
   category: string;
@@ -24,19 +24,19 @@ const Category = () => {
   }, [category, categoriesMap]);
 
   return (
-    <Fragment>
+    <CategoryContainer>
       <Title>{category.toUpperCase()}</Title>
       {isLoading ? (
         <Spinner/>
         ) : (
-        <CategoryContainer>
+        <CategoryProductContainer>
           {products &&
             products.map((product) => (
               <ProductCard key={product.id} product={product} />
             ))}
-        </CategoryContainer>
+        </CategoryProductContainer>
       )} 
-    </Fragment>
+    </CategoryContainer>
   );
 };
 
